@@ -1,9 +1,12 @@
 import Nav from '../components/Nav'
 import {useState} from 'react'
+import { useCookies } from 'react-cookie'
 
 const Onboarding = () => {
+    const [ cookies, setCookie, removeCookie] = useCookies(null)
+
     const [formData, setFormData] = useState({
-        user_id: "",
+        user_id: cookies.UserId,
         first_name: "",
         dob_day: "",
         dob_month: "",
@@ -19,7 +22,7 @@ const Onboarding = () => {
 
 
     const handleSubmit = async (e) => {
-
+        
     }
 
     const handleChange = (e) => {
@@ -188,6 +191,7 @@ const Onboarding = () => {
                             id="url"
                             onChange={handleChange}
                             required={true}
+                            placeholder="Paste image link here"
                         />
                         <div className="photo-container">
                             {formData.url && <img src={formData.url} alt="profile pic preview"/>}
